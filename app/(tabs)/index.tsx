@@ -4,8 +4,23 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useEffect } from 'react';
+import { useRouter } from 'expo-router';
+import { View, Text } from 'react-native';
+
 
 export default function HomeScreen() {
+
+    const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/explore'); // Điều hướng sang tab "Explore"
+    }, 10000); // 10 giây
+
+    return () => clearTimeout(timer); // Dọn dẹp bộ đếm thời gian khi component unmount
+  }, []);
+
     return (
         <ParallaxScrollView
             headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
